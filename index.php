@@ -31,26 +31,6 @@
                 <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
                 <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
             </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-            </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-            </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-            </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-            </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-            </div>
         </div> -->
         <div class="todos-list">
             <?php

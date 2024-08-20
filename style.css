@@ -273,8 +273,8 @@ main>h1 {
         transform: scale(2) rotateX(0deg) rotate(0deg) translateZ(0) translate(15%, 25%);
     }
     .page-animator>.todo-form{
-        transform: translate(-48%,-45%) scale(.7);
-        outline: 2px solid red;;
+        transform: translate(-49%,-50%) scale(.68);
+        /* outline: 2px solid red; */
     }
 }
 
