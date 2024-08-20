@@ -1,0 +1,323 @@
+:root {
+    --bright-blue: hsl(220, 98%, 61%);
+    --check-bg: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+    /* ### Neutral; */
+
+    /* ### Light Theme; */
+
+    --very-light-gray: hsl(0, 0%, 98%);
+    --very-light-grayish-blue: hsl(236, 33%, 92%);
+    --light-grayish-blue-light: hsl(233, 11%, 84%);
+    --dark-grayish-blue: hsl(236, 9%, 61%);
+    --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+    --bg-cont: hsl(236, 33%, 92%);
+    --main-bg: hsl(0, 0%, 98%);
+    --text-bg: hsl(235, 19%, 35%);
+    --blocked-txt: hsl(236, 9%, 61%);
+
+}
+
+.dark {
+    /* ### Dark Theme; */
+
+    --very-dark-blue: hsl(235, 21%, 11%);
+    --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+    --light-grayish-blue-dark: hsl(234, 39%, 85%);
+    --light-grayish-blue-hover: hsl(236, 33%, 92%);
+    --dark-grayish-blue: hsl(234, 11%, 52%);
+    --very-dark-grayish-blue-i: hsl(233, 14%, 35%);
+    --very-dark-grayish-blue-ii: hsl(237, 14%, 26%);
+
+    --bg-cont: hsl(235, 24%, 19%);
+    --main-bg: hsl(235, 21%, 11%);
+    --text-bg: hsl(234, 39%, 85%);
+    --blocked-txt: hsl(234, 11%, 52%);
+
+}
+
+@font-face {
+    font-family: 'josefin-sans';
+    src: url(./assets/fonts/JosefinSans-VariableFont_wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'josefin-sans';
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    padding: 2vh 5vw;
+    background: #ddd;
+}
+
+main>h1 {
+    color: var(--text-bg);
+    text-align: center;
+    padding: 20px 0;
+    font-size: min(6rem,12vw);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-todo-btns {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background: var(--bright-blue);
+    border-radius: 60px;
+    overflow: hidden;
+    padding: 0 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5),
+        -8px -8px 16px rgba(255, 255, 255, 0.7);
+    transition: .5s;
+    scale: .9;
+}
+.add-todo-btns:hover{
+    scale: 1;
+}
+
+.add-todo-btns>* {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: min(4rem, 10vw);
+    background: inherit;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-todo-btns>button:last-child {
+    margin: 0 5px 0 0;
+    border-left: 1px solid var(--very-light-grayish-blue);
+}
+
+
+/****************** todos-list and todos code ****************************/
+.todos-list{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* outline: 2px solid lawngreen; */
+    height: 40%;
+    margin-top: 3vh;
+    overflow-x: auto;
+}
+.todos-list>.todo-card{
+    width: max(18%,200px);
+    aspect-ratio: 175/187;
+    background-image: url(./assets/images/—Pngtree—cute\ post-it\ note\ elements_5324193.png);
+    /* outline: 2px solid rebeccapurple; */
+    background-size: cover;
+    padding: 2.25%;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .5s;
+}
+@media screen and (max-width: 1080px) {
+    .todos-list>.todo-card{
+        padding: max(3vw,1.5rem);
+    }
+}
+.todos-list>.todo-card:hover{
+    scale: 1.05;
+}
+.todos-list>.todo-card>.todo-title{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8%;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: min(20px,4vw);
+}
+.todos-list>.todo-card>.todo-desc{
+    display: -webkit-box;
+    width: 100%;
+    line-clamp: 6;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    /* background: rgb(78, 78, 150); */
+    /* height: 75%; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: min(16px,3.5vw);
+}
+/****************** todos-list and todos code end ****************************/
+
+/**************** Dustbin *****************/
+.dustbin {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    aspect-ratio: 1;
+    transition: .5s;
+}
+
+.dustbin>img {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(10px 10px 6px rgba(0, 0, 0, 0.5));
+}
+
+.pages {
+    position: fixed;
+    right: 0;
+    bottom: -40px;
+    width: 300px;
+    aspect-ratio: 1;
+    transition: .5s;
+    perspective: 1000px;
+}
+
+.pages>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(50deg) rotate(-30deg) translateZ(calc(var(--i) * 8px));
+    filter: drop-shadow(-10px 10px 6px rgba(0, 0, 0, 0.5));
+}
+
+@media screen and (max-width: 1536px) {
+
+    .dustbin,
+    .pages {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1vh 2vw;
+    }
+
+    .dustbin,
+    .pages {
+        width: 30%;
+    }
+
+}
+
+/************** page-animator modal ************/
+.page-animator {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.2);
+    left: 0;
+    top: 0;
+    /* pointer-events: none; */
+    display: none;
+}
+
+.page-animator>img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: 0;
+    bottom: 0;
+    transform: scale(1) rotateX(50deg) rotate(-30deg) translateZ(70px);
+    transition: 1s;
+}
+
+.page-animator>img.animate{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    right: 50%;
+    bottom: 50%;
+    transition: 1s;
+    transform: scale(3) rotateX(0deg) rotate(0deg) translateZ(0) translate(5%, 25%);
+    /* outline: 2px solid lime;     */
+}
+
+.page-animator>.todo-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%,-41%);
+    width: 390px;
+    height: 500px;
+    /* background: rgba(0, 0, 0, 0.8); */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+}
+@media screen and (max-width: 420px) {
+    .page-animator>img.animate{
+        transform: scale(2) rotateX(0deg) rotate(0deg) translateZ(0) translate(15%, 25%);
+    }
+    .page-animator>.todo-form{
+        transform: translate(-48%,-45%) scale(.7);
+        outline: 2px solid red;;
+    }
+}
+
+.page-animator>.todo-form>
+input[type="text"],
+.page-animator>.todo-form>
+textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.page-animator>.todo-form>
+input[type="text"]{
+    font-size: 1.5rem;
+}
+
+.page-animator>.todo-form>
+textarea{
+    resize: vertical;
+    height: 80%;
+    /* outline: 2px solid saddlebrown; */
+}
+.page-animator>.todo-form>
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.page-animator>.todo-form>
+button[type="submit"]:hover {
+    background-color: #218838;
+}
