@@ -26,38 +26,67 @@
             <div class="todo-card">
                 <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
                 <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
+                <ion-icon name="trash-outline" id="delete-todo"></ion-icon>
             </div>
             <div class="todo-card">
                 <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
                 <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
+                <ion-icon name="trash-outline" id="delete-todo"></ion-icon>
             </div>
         </div> -->
         <div class="todos-list">
             <?php
             // Connect to the database
             $conn = new mysqli('localhost', 'root', '', 'todo_app');
-    
+
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-    
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+                $delete_id = $conn->real_escape_string($_POST['delete_id']);
+                
+                // SQL query to delete the todo by ID
+                $delete_sql = "DELETE FROM todos WHERE id = '$delete_id'";
+                
+                if ($conn->query($delete_sql) === TRUE) {
+                    // Redirect to refresh the page after deletion
+                    header('Location: index.php');
+                    exit();
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+            }
+
             // Fetch todos from the database
             $sql = "SELECT * FROM todos ORDER BY created_at DESC";
             $result = $conn->query($sql);
-    
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="todo-card">';
                     echo '<p class="todo-title">' . htmlspecialchars($row['title']) . '</p>';
                     echo '<p class="todo-desc">' . htmlspecialchars($row['description']) . '</p>';
+
+                    // Form for delete functionality
+                    echo '<form method="POST"  class="delete-todo">';
+                    echo '<input type="hidden" name="delete_id" value="' . $row['id'] . '">';
+                    echo '<button type="submit" style="background:none;border:none;color:red;cursor:pointer;">';
+                    echo '<ion-icon name="trash-outline"></ion-icon>';
+                    echo '</button>';
+                    echo '</form>';
+
                     echo '</div>';
                 }
             } else {
                 echo '<p>No todos found.</p>';
             }
-    
+
             $conn->close();
             ?>
+        </div>
+        <div class="delete-animator">
+            <img src="./assets/images/—Pngtree—cute post-it note elements_5324193.png" alt="">
         </div>
         <div class="dustbin">
             <img src="./assets/images/—Pngtree—silver trash bin clipart_5947991.png" alt="">
@@ -83,8 +112,8 @@
             <form class="todo-form" action="add_todo.php" method="POST">
                 <input class="kalam-bold" type="text" id="todoTitle" name="todoTitle" placeholder="Title here..." required>
                 <textarea class="kalam-regular" id="todoDesc" name="todoDesc" placeholder="Description here..." required></textarea>
-            <button type="submit">Add Todo</button>
-        </form>
+                <button type="submit">Add Todo</button>
+            </form>
         </div>
     </main>
 </body>
