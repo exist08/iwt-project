@@ -189,6 +189,28 @@ main>h1 {
     transition: .3s;
     opacity: 1;
 }
+.todos-list>.todo-card>.edit-todo{
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    color: red;
+    font-size: 150%;
+    opacity: 0;
+    transition: .3s;
+    background: rgb(255, 198, 177);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todos-list>.todo-card>.edit-todo ion-icon{
+    font-size: 150%;
+    padding: .25rem;
+}
+.todos-list>.todo-card:hover .edit-todo{
+    transition: .3s;
+    opacity: 1;
+}
 /****************** todos-list and todos code end ****************************/
 
 /**************** Dustbin *****************/

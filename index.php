@@ -22,22 +22,11 @@
             <button>Add Todo</button>
             <button><ion-icon name="add-circle-outline"></ion-icon></button>
         </div>
-        <!-- <div class="todos-list">
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-                <ion-icon name="trash-outline" id="delete-todo"></ion-icon>
-            </div>
-            <div class="todo-card">
-                <p class="todo-title">IWT presentation helllo ther ah jisa iaasdfas asdfa sdfasfas</h4>
-                <p class="todo-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque qui accusantium consequuntur sed, facilis iure debitis deleniti autem esse culpa assumenda repellat totam vero a magni quis cumque soluta harum?</p>
-                <ion-icon name="trash-outline" id="delete-todo"></ion-icon>
-            </div>
-        </div> -->
+
         <div class="todos-list">
             <?php
             // Connect to the database
-            $conn = new mysqli('localhost', 'root', '', 'todo_app');
+            $conn = new mysqli('localhost', 'root', 'brizzler08', 'todo_app');
 
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
@@ -45,10 +34,10 @@
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
                 $delete_id = $conn->real_escape_string($_POST['delete_id']);
-                
+
                 // SQL query to delete the todo by ID
                 $delete_sql = "DELETE FROM todos WHERE id = '$delete_id'";
-                
+
                 if ($conn->query($delete_sql) === TRUE) {
                     // Redirect to refresh the page after deletion
                     header('Location: index.php');
@@ -73,6 +62,15 @@
                     echo '<input type="hidden" name="delete_id" value="' . $row['id'] . '">';
                     echo '<button type="submit" style="background:none;border:none;color:red;cursor:pointer;">';
                     echo '<ion-icon name="trash-outline"></ion-icon>';
+                    // echo '<ion-icon name="create-outline"></ion-icon>';
+                    echo '</button>';
+                    echo '</form>';
+
+                    // Form for edit functionality
+                    echo '<form method="POST" class="edit-todo">';
+                    echo '<input type="hidden" name="edit_id" value="' . $row['id'] . '">';
+                    echo '<button type="button" class="edit-btn" data-id="' . $row['id'] . '" data-title="' . htmlspecialchars($row['title']) . '" data-desc="' . htmlspecialchars($row['description']) . '" style="background:none;border:none;color:blue;cursor:pointer;">';
+                    echo '<ion-icon name="create-outline"></ion-icon>';
                     echo '</button>';
                     echo '</form>';
 
@@ -108,13 +106,15 @@
             <img style="--i:14" src="./assets/images/—Pngtree—blank page shadow png_7718379.png" alt="">
         </div>
         <div class="page-animator" id="page-animator">
-            <img id="pick-up-page" class="" src="./assets/images/—Pngtree—blank page shadow png_7718379.png" alt="">
-            <form class="todo-form" action="add_todo.php" method="POST">
-                <input class="kalam-bold" type="text" id="todoTitle" name="todoTitle" placeholder="Title here..." required>
-                <textarea class="kalam-regular" id="todoDesc" name="todoDesc" placeholder="Description here..." required></textarea>
-                <button type="submit">Add Todo</button>
+            <img id="pick-up-page" class="<?php echo isset($edit_id) ? 'animate' : ''; ?>" src="./assets/images/—Pngtree—blank page shadow png_7718379.png" alt="">
+            <form class="todo-form" action="save_todo.php" method="POST">
+                <input type="hidden" name="todo_id" value="<?php echo isset($edit_id) ? $edit_id : ''; ?>">
+                <input class="kalam-bold" type="text" id="todoTitle" name="todoTitle" placeholder="Title here..." value="<?php echo isset($edit_title) ? $edit_title : ''; ?>" required>
+                <textarea class="kalam-regular" id="todoDesc" name="todoDesc" placeholder="Description here..." required><?php echo isset($edit_desc) ? $edit_desc : ''; ?></textarea>
+                <button type="submit"><?php echo isset($edit_id) ? 'Update Todo' : 'Add Todo'; ?></button>
             </form>
         </div>
+
     </main>
 </body>
 

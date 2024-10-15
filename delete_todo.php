@@ -1,6 +1,6 @@
 <?php
 // Connect to the database
-$conn = new mysqli('localhost', 'root', '', 'todo_app');
+$conn = new mysqli('localhost', 'root', 'brizzler08', 'todo_app');
 
 // Check connection
 if ($conn->connect_error) {
@@ -18,6 +18,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error deleting record: ". $conn->error;
 }
-
 
 ?>

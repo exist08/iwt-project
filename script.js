@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let pageAnimator = document.getElementById("page-animator");
     let pagePickUp = document.getElementById("pick-up-page");
 
+
+    const modalForm = document.querySelector('.todo-form');
+    const todoTitleInput = document.getElementById('todoTitle');
+    const todoDescInput = document.getElementById('todoDesc');
+    const todoIdInput = modalForm.querySelector('input[name="todo_id"]');
+
+
     openModalBtn.onclick = function () {
         pageAnimator.style.display = "block";
         setTimeout(()=>{
@@ -55,6 +62,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            pageAnimator.style.display = "block";
+            setTimeout(()=>{
+                pagePickUp.classList.add("animate");
+            },100)
+
+            const todoId = btn.getAttribute('data-id');
+            const todoTitle = btn.getAttribute('data-title');
+            const todoDesc = btn.getAttribute('data-desc');
+
+            // Set values in the modal form
+            todoIdInput.value = todoId;
+            todoTitleInput.value = todoTitle;
+            todoDescInput.value = todoDesc;
+
+            // Optionally open the modal (if you're using a modal)
+            document.getElementById('page-animator').classList.add('animate');
+        });
+    });
     
 
     todoForm.onsubmit = function (event) {
